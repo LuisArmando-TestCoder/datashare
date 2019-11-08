@@ -24,6 +24,11 @@ router.post('/entry', (req, res) => {
     return res.json({ success: true, message: `${title} has been successfully added to entries` });
 });
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "*");
+    next();
+});
 app.use(express.urlencoded({ extended: false }));
 app.use('/.netlify/functions/api', router);
 
